@@ -499,6 +499,7 @@
 | 461 | [What are hidden classes?](#what-are-hidden-classes) |
 | 462 | [What is inline caching?](#what-is-inline-caching) |
 | 463 | [What are the different ways to execute external scripts?](#what-are-the-different-ways-to-execute-external-scripts) |
+| 464 | [How to detect system dark mode in javascript?](#how-to-detect-system-dark-mode-in-javascript) |
 <!-- TOC_END -->
 
 <!-- QUESTIONS_START -->
@@ -8734,6 +8735,31 @@ The execution context is created when a function is called. The function's code 
        **Note:** You should only use either async or defer attribute if the `src` attribute is present.
 
     **[⬆ Back to Top](#table-of-contents)**
+
+464. ### How to detect system dark mode in javascript?
+
+      The combination of `Window.matchMedia()` utility method along with media query is used to check if the user has selected a dark color scheme in their operating system settings or not. The CSS media query `prefers-color-scheme` needs to be passed to identify system color theme.
+
+      The following javascript code describes the usage,
+
+      ```javascript
+      const hasDarkColorScheme = () =>
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+      ```
+
+      You can also watch changes to system color scheme using `addEventListener`,
+
+      ```javascript
+      window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+          const theme = event.matches ? "dark" : "light";
+      });
+      ```
+      **Note:** The matchMedia method returns **MediaQueryList** object stores information from a media query.
+
+      **[⬆ Back to Top](#table-of-contents)**
 
 <!-- QUESTIONS_END -->
 
